@@ -676,10 +676,6 @@ def generate_ai_insight(name, prob, cp, lime_weights, raw_data, groq_key):
 # SIDEBAR
 # ============================================================
 with st.sidebar:
-    st.image(
-        "https://raw.githubusercontent.com/twitter/twemoji/master/assets/svg/1f393.svg",
-        width=72
-    )
     st.markdown("## EduRisk")
     st.markdown('<p style="color:#64748b;font-size:.8rem;margin-top:-.3rem">UTM · Student Risk Dashboard</p>',
                 unsafe_allow_html=True)
