@@ -719,28 +719,6 @@ with st.sidebar:
         <code>model_backend/checkpoint_models.pkl</code>
         </div>
         """, unsafe_allow_html=True)
-        
-    if st.button("Test Groq Key"):
-        import urllib.request, json
-        payload = json.dumps({
-            "model": AI_MODELS,
-            "max_tokens": 50,
-            "messages": [{"role": "user", "content": "Say hello"}]
-        }).encode()
-        req = urllib.request.Request(
-            f"{AI_BASE_URL}/chat/completions",
-            data=payload,
-            headers={
-                "Content-Type": "application/json",
-                "Authorization": f"Bearer {groq_key}",
-            },
-            method="POST"
-        )
-        try:
-            with urllib.request.urlopen(req, timeout=20) as resp:
-                st.success(json.loads(resp.read()))
-        except Exception as e:
-            st.error(str(e))
 
 # ============================================================
 # MAIN WEBSITE HERO
