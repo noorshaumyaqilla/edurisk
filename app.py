@@ -854,7 +854,7 @@ if 'result_df' not in st.session_state:
         st.dataframe(pd.DataFrame({
             'StudentName': ['STUDENT A', 'STUDENT B', 'STUDENT C'],
             'CW1': [29, 18, 16], 'CW2': [34, 36, 18],
-        }), use_container_width=True, hide_index=True)
+        }), width='stretch', hide_index=True)
 
     if not analyse_btn:
         st.stop()
@@ -1004,29 +1004,9 @@ with tab1:
 
     table_df = display_df[show_cols].rename(columns=col_map)
 
-    def color_level(val):
-        colors = {
-            'High Risk':   'color: #dc2626; font-weight: 700',
-            'Borderline':  'color: #d97706; font-weight: 700',
-            'On Track':    'color: #16a34a; font-weight: 700',
-        }
-        return colors.get(val, '')
-
-    def color_risk(val):
-        if val >= 65:   return 'color: #dc2626; font-weight: 700'
-        if val >= 45:   return 'color: #d97706; font-weight: 700'
-        return 'color: #16a34a; font-weight: 700'
-
-    styled = (
-        table_df.style
-        .applymap(color_level, subset=['Level'])
-        .applymap(color_risk,  subset=['Risk %'])
-        .format({'Risk %': '{:.1f}%'})
-    )
-
     st.dataframe(
-        styled,
-        use_container_width=True,
+        table_df,
+        width='stretch',
         hide_index=True,
         height=min(38 * len(table_df) + 38, 600),
         column_config={
@@ -1067,7 +1047,7 @@ with tab2:
     ax1.grid(axis='y', color='#dbe3ee', linewidth=0.5)
     for sp in ax1.spines.values(): sp.set_color('#dbe3ee')
     plt.tight_layout()
-    st.pyplot(fig1, use_container_width=True)
+    st.pyplot(fig1, width='stretch')
     plt.close(fig1)
 
     if 'CW1' in result_df.columns:
@@ -1093,7 +1073,7 @@ with tab2:
                 textprops={'color': '#475569', 'fontsize': 9})
         ax3.set_title('Risk Distribution', color='#172033', fontsize=10)
         plt.tight_layout()
-        st.pyplot(fig2, use_container_width=True)
+        st.pyplot(fig2, width='stretch')
         plt.close(fig2)
 
     if 'Online_C' in result_df.columns and 'Online_O' in result_df.columns:
@@ -1113,7 +1093,7 @@ with tab2:
         ax4.grid(axis='y', color='#dbe3ee', linewidth=0.5)
         for sp in ax4.spines.values(): sp.set_color('#dbe3ee')
         plt.tight_layout()
-        st.pyplot(fig3, use_container_width=True)
+        st.pyplot(fig3, width='stretch')
         plt.close(fig3)
 
 # ── TAB 3 ──────────────────────────────────────────────────
@@ -1189,7 +1169,7 @@ with tab3:
                 except: val = selected[col]
                 prof_rows.append({'Feature': label, 'Value': val})
         if prof_rows:
-            st.dataframe(pd.DataFrame(prof_rows), use_container_width=True, hide_index=True, height=215)
+            st.dataframe(pd.DataFrame(prof_rows), width='stretch', hide_index=True, height=215)
 
     # ── LIME chart ──
     st.markdown("<br>", unsafe_allow_html=True)
@@ -1201,7 +1181,7 @@ with tab3:
             if assets_ok:
                 fig_lime, lime_weights = lime_figure(np.array(encoded), active_cp)
                 if fig_lime:
-                    st.pyplot(fig_lime, use_container_width=True)
+                    st.pyplot(fig_lime, width='stretch')
                     plt.close(fig_lime)
             else:
                 st.info("LIME requires trained models. Run `fyp2_pipeline.py` first.")
