@@ -5,3 +5,4 @@ joblib
 matplotlib
 lime
 scikit-learn
+xgboost
