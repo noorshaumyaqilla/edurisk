@@ -3,11 +3,6 @@
 ## Overview
 Student dropouts continue to be a major issue in higher education, particularly in online environments where early signs of struggling students are difficult to detect. While modern Machine Learning (ML) models offer high predictive power to identify at-risk students, they often act as “black boxes,” limiting their trust and application in real-world educational decision-making.
 
-Existing global explainability techniques, such as SHAP, suffer from critical weaknesses when applied to real-time educator dashboards. These include:
-
-- High computational expenses that hinder real-time application
-- Complex outputs that are difficult for non-technical educators to interpret into actionable interventions
-
 ## The Research
 To address these challenges, this study conducted a comprehensive evaluation of machine learning algorithms for binary risk classification (Pass vs. At-Risk).
 
@@ -17,6 +12,8 @@ The models evaluated included:
 - XGBoost (High-performance ensemble model)
 
 These models were first tested on a diverse benchmark from the Open University Learning Analytics Dataset (OULAD) before being adapted to a localized, institutional Moodle-based dataset. We generated Local Interpretable Model-Agnostic Explanations (LIME) to rigorously assess the explainability layer, quantitatively evaluating its fidelity and stability against the underlying black-box models.
+
+For the related OULAD experiment repository, see: [https://github.com/noorshaumyaqilla/oulad_experiment](https://github.com/noorshaumyaqilla/oulad_experiment)
 
 ## EduRisk Checkpoint Solution & Dashboard
 Building upon the research findings, this project introduces a novel approach: a three-stage Checkpoint (CP) design to account for the incremental nature of engagement and coursework data over an academic semester.
